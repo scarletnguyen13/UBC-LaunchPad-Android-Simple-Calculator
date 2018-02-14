@@ -20,4 +20,14 @@
     <string name="multiply">×</string>
     <string name="divide">÷</string>
     <string name="subtract">–</string>
+    <string name="heximal">HEX</string>
+    <string name="binary">BI</string>
+    <string name="sin">SIN</string>
+    <string name="cos">COS</string>
+    <string name="tan">TAN</string>
+    <string name="square_root">√</string>
+    <string name="pi">π</string>
+    <string name="oneDivideX">1/x</string>
+    <string name="xDivide100">x/100</string>
+    <string name="factorial">x!</string>
 </resources>

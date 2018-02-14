@@ -19,7 +19,7 @@
         android:text="@string/_0"
         android:textAlignment="textEnd"
         android:textColor="@color/colorPrimary"
-        android:textSize="40sp"
+        android:textSize="24sp"
         tools:ignore="RtlHardcoded,RtlSymmetry" />
 
     <LinearLayout
@@ -30,6 +30,28 @@
         android:layout_weight="0.1">
 
         <Button
+            android:id="@+id/buttonHex"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0.2"
+            android:background="@color/colorPrimaryDark"
+            android:onClick="converter"
+            android:text="@string/heximal"
+            android:textColor="@color/colorAccent"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/buttonBi"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0.2"
+            android:background="@color/colorPrimaryDark"
+            android:onClick="converter"
+            android:text="@string/binary"
+            android:textColor="@color/colorAccent"
+            android:textSize="18sp" />
+
+        <Button
             android:id="@+id/buttonClear"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -38,7 +60,7 @@
             android:onClick="onClick"
             android:text="@string/clear"
             android:textColor="@color/colorAccent"
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/buttonExponent"
@@ -49,7 +71,7 @@
             android:onClick="onClick"
             android:text="@string/exponent"
             android:textColor="@color/colorAccent"
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/buttonModule"
@@ -60,7 +82,7 @@
             android:onClick="onClick"
             android:text="@string/module"
             android:textColor="@color/colorAccent"
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/buttonDivide"
@@ -71,7 +93,7 @@
             android:onClick="onClick"
             android:text="@string/divide"
             android:textColor="@color/colorAccent"
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
     </LinearLayout>
 
@@ -82,6 +104,28 @@
         android:layout_weight="0.1" >
 
         <Button
+            android:id="@+id/buttonSIN"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0.2"
+            android:background="@color/colorPrimaryDark"
+            android:onClick="onClick"
+            android:text="@string/sin"
+            android:textColor="@color/colorAccent"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/buttonCOS"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0.2"
+            android:background="@color/colorPrimaryDark"
+            android:onClick="onClick"
+            android:text="@string/cos"
+            android:textColor="@color/colorAccent"
+            android:textSize="18sp" />
+
+        <Button
             android:id="@+id/button7"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -90,7 +134,7 @@
             android:onClick="onClick"
             android:text="@string/_7"
             android:textColor="@color/colorAccent"
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/button8"
@@ -101,7 +145,7 @@
             android:onClick="onClick"
             android:text="@string/_8"
             android:textColor="@color/colorAccent"
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/button9"
@@ -112,7 +156,7 @@
             android:onClick="onClick"
             android:text="@string/_9"
             android:textColor="@color/colorAccent"
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/buttonMultiply"
@@ -123,7 +167,7 @@
             android:onClick="onClick"
             android:text="@string/multiply"
             android:textColor="@color/colorAccent"
-            android:textSize="24sp" />
+            android:textSize="18sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -131,6 +175,29 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_weight="0.1">
+
+        <Button
+            android:id="@+id/buttonTAN"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0.2"
+            android:background="@color/colorPrimaryDark"
+            android:onClick="onClick"
+            android:text="@string/tan"
+            android:textColor="@color/colorAccent"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/buttonFactorial"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0.2"
+            android:background="@color/colorPrimaryDark"
+            android:onClick="onClick"
+            android:text="@string/factorial"
+            android:textAllCaps="false"
+            android:textColor="@color/colorAccent"
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/button4"
@@ -141,7 +208,7 @@
             android:onClick="onClick"
             android:text="@string/_4"
             android:textColor="@color/colorAccent"
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/button5"
@@ -152,7 +219,7 @@
             android:onClick="onClick"
             android:text="@string/_5"
             android:textColor="@color/colorAccent"
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/button6"
@@ -163,7 +230,7 @@
             android:onClick="onClick"
             android:text="@string/_6"
             android:textColor="@color/colorAccent"
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/buttonSubtract"
@@ -174,7 +241,7 @@
             android:onClick="onClick"
             android:text="@string/subtract"
             android:textColor="@color/colorAccent"
-            android:textSize="24sp" />
+            android:textSize="18sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -182,6 +249,29 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_weight="0.1">
+
+        <Button
+            android:id="@+id/buttonSquareRoot"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0.2"
+            android:background="@color/colorPrimaryDark"
+            android:onClick="onClick"
+            android:text="@string/square_root"
+            android:textColor="@color/colorAccent"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/buttonPI"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0.2"
+            android:background="@color/colorPrimaryDark"
+            android:onClick="onClick"
+            android:text="@string/pi"
+            android:textAllCaps="false"
+            android:textColor="@color/colorAccent"
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/button1"
@@ -192,7 +282,7 @@
             android:onClick="onClick"
             android:text="@string/_1"
             android:textColor="@color/colorAccent"
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/button2"
@@ -203,7 +293,7 @@
             android:onClick="onClick"
             android:text="@string/_2"
             android:textColor="@color/colorAccent"
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/button3"
@@ -214,7 +304,7 @@
             android:onClick="onClick"
             android:text="@string/_3"
             android:textColor="@color/colorAccent"
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/buttonAdd"
@@ -225,7 +315,7 @@
             android:onClick="onClick"
             android:text="@string/add"
             android:textColor="@color/colorAccent"
-            android:textSize="24sp" />
+            android:textSize="18sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -233,6 +323,30 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_weight="0.1">
+
+        <Button
+            android:id="@+id/buttonOneDivideX"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0.2"
+            android:background="@color/colorPrimaryDark"
+            android:onClick="onClick"
+            android:text="@string/oneDivideX"
+            android:textAllCaps="false"
+            android:textColor="@color/colorAccent"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/buttonXDivide100"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0.2"
+            android:background="@color/colorPrimaryDark"
+            android:onClick="onClick"
+            android:text="@string/xDivide100"
+            android:textAllCaps="false"
+            android:textColor="@color/colorAccent"
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/buttonDot"
@@ -243,7 +357,7 @@
             android:onClick="onClick"
             android:text="@string/dot"
             android:textColor="@color/colorAccent"
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/button0"
@@ -254,7 +368,7 @@
             android:onClick="onClick"
             android:text="@string/_0"
             android:textColor="@color/colorAccent"
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/buttonSigns"
@@ -265,7 +379,7 @@
             android:onClick="onClick"
             android:text="@string/sign"
             android:textColor="@color/colorAccent"
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/buttonEquals"
@@ -276,6 +390,6 @@
             android:onClick="equals"
             android:text="@string/equals"
             android:textColor="@color/colorAccent"
-            android:textSize="24sp" />
+            android:textSize="18sp" />
     </LinearLayout>
 </LinearLayout>

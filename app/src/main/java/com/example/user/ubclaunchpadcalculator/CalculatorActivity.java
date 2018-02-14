@@ -1,12 +1,28 @@
 package com.example.user.ubclaunchpadcalculator;
 
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
+import java.util.Collection;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
 
 public class CalculatorActivity extends AppCompatActivity  {
+
+    private static final String TAG = "CalculatorActivity";
+    private static final String KEY_TEXTVIEW = "text_view";
+    private static final String KEY_OPERATION = "operation_available";
+    private static final String KEY_DOT = "dot_available";
+    private static final String KEY_SIGN = "sign_available";
+    private static final String KEY_SECOND_OPERATION = "second_operation";
+    private static final String KEY_MEMORY = "memory";
 
     private String result; //String that will appears on the textView
     private boolean operationAvailable; //indicates whether the user can use operations or not
@@ -15,8 +31,9 @@ public class CalculatorActivity extends AppCompatActivity  {
     private boolean secondOperation; //becomes true if the user decided to keep using the "Ans"
     private double memory; //stores "Ans" value
 
+    private TextView textView;
+
     public void onClick(View v) {
-        TextView textView = (TextView) findViewById(R.id.textView);
         switch (v.getId()) {
             case R.id.button0:
                 if (secondOperation == false) {
@@ -85,7 +102,7 @@ public class CalculatorActivity extends AppCompatActivity  {
                     dotAvailable = true;
                     signAvailable = true;
                     secondOperation = false;
-                } else if (result.isEmpty() != true && operationAvailable == false) {
+                } else if (result.length() >= 3 && operationAvailable == false) {
                     result = result.substring(0,result.length()-3) + " + ";
                 }
                 break;
@@ -96,7 +113,7 @@ public class CalculatorActivity extends AppCompatActivity  {
                     dotAvailable = true;
                     signAvailable = true;
                     secondOperation = false;
-                } else if (result.isEmpty() != true && operationAvailable == false) {
+                } else if (result.length() >= 3 && operationAvailable == false) {
                     result = result.substring(0,result.length()-3) + " – ";
                 }
                 break;
@@ -107,7 +124,7 @@ public class CalculatorActivity extends AppCompatActivity  {
                     dotAvailable = true;
                     signAvailable = true;
                     secondOperation = false;
-                } else if (result.isEmpty() != true && operationAvailable == false) {
+                } else if (result.length() >= 3 && operationAvailable == false) {
                     result = result.substring(0,result.length()-3) + " × ";
                 }
                 break;
@@ -118,7 +135,7 @@ public class CalculatorActivity extends AppCompatActivity  {
                     dotAvailable = true;
                     signAvailable = true;
                     secondOperation = false;
-                } else if (result.isEmpty() != true && operationAvailable == false) {
+                } else if (result.length() >= 3 && operationAvailable == false) {
                     result = result.substring(0,result.length()-3) + " ÷ ";
                 }
                 break;
@@ -129,7 +146,7 @@ public class CalculatorActivity extends AppCompatActivity  {
                     dotAvailable = true;
                     signAvailable = true;
                     secondOperation = false;
-                } else if (result.isEmpty() != true && operationAvailable == false) {
+                } else if (result.length() >= 3 && operationAvailable == false) {
                     result = result.substring(0,result.length()-3) + " % ";
                 }
                 break;
@@ -140,7 +157,7 @@ public class CalculatorActivity extends AppCompatActivity  {
                     dotAvailable = true;
                     signAvailable = true;
                     secondOperation = false;
-                } else if (result.isEmpty() != true && operationAvailable == false) {
+                } else if (result.length() >= 3 && operationAvailable == false) {
                     result = result.substring(0,result.length()-3) + " ^ ";
                 }
                 break;
@@ -151,26 +168,96 @@ public class CalculatorActivity extends AppCompatActivity  {
                 }
                 break;
             case R.id.buttonSigns:
-                if (operationAvailable == false && signAvailable) {
+                if (operationAvailable == false && signAvailable && dotAvailable) {
                     result += "-";
                     signAvailable = false;
                 }
                 break;
             case R.id.buttonClear:
-                result = "";
-                operationAvailable = false;
-                dotAvailable = true;
-                signAvailable = true;
-
-                secondOperation = false;
-                memory = 0.0;
+                reset();
                 break;
+
+            //NEW FUNCTIONS
+            case R.id.buttonSIN:
+                if (signAvailable && operationAvailable == false) {
+                    result += "sin(";
+                }
+                break;
+            case R.id.buttonCOS:
+                if (signAvailable && operationAvailable == false) {
+                    result += "cos(";
+                }
+                break;
+            case R.id.buttonTAN:
+                if (signAvailable && operationAvailable == false) {
+                    result += "tan(";
+                }
+                break;
+            case R.id.buttonFactorial:
+                result += "!";
+                break;
+            case R.id.buttonSquareRoot:
+                result += "√";
+                break;
+            case R.id.buttonPI:
+                result += "π";
+                break;
+            case R.id.buttonOneDivideX:
+
+                break;
+            case R.id.buttonXDivide100:
+
+                break;
+
             default:
                 throw new RuntimeException("Unknow button ID");
         }
         textView.setText(result);
     }
 
+    public void converter(View view) {
+        if (!result.isEmpty() && !result.contains("+") && !result.contains("–") && !result.contains("×") && !result.contains("÷") && !result.contains("%") && !result.contains("^")
+                && !result.contains("sin") && !result.contains("cos") && !result.contains("tan")) {
+            int a = (int) Double.parseDouble(result);
+            if (a > 0) {
+                switch (view.getId()) {
+                    case R.id.buttonHex:
+                        textView.setText(getHexNumber(a));
+                        break;
+                    case R.id.buttonBi:
+                        textView.setText(getBinaryNumber(a));
+                        break;
+                }
+            }
+            reset();
+        }
+    }
+
+    private String getBinaryNumber(int number) {
+        String answer = "";
+        if (number == 1) {
+            return "1";
+        } else {
+            answer += number % 2 == 1 ? "1" : "0";
+            return getBinaryNumber((int) number / 2) + answer;
+        }
+    }
+
+    private String getHexNumber(int number) {
+        String answer = "";
+        Map<Integer,String> hex = new TreeMap<Integer, String>();
+        hex.put(10,"A"); hex.put(11,"B"); hex.put(12,"C");
+        hex.put(13,"D"); hex.put(14,"E"); hex.put(15,"F");
+        if (number == 0) {
+            return "";
+        } else {
+            int a = number % 16;
+            answer += a >= 10 ? hex.get(a) : a;
+            return getHexNumber(number / 16) + answer;
+        }
+    }
+
+    //TODO: ADD SIN, COS AND TAN FUNCTIONS
     public void equals(View view) {
         boolean divideZero = false;
         TextView textView = (TextView) findViewById(R.id.textView);
@@ -210,6 +297,7 @@ public class CalculatorActivity extends AppCompatActivity  {
                 } else if (pieces[1].equals("×")) {
                     finalResult = a * b;
                 } else if (pieces[1].equals("÷")) {
+                    //prevents from having zero(s) in the division
                     if (pieces[2].equals("0")) {
                         Toast.makeText(CalculatorActivity.this, "Cannot divide by zero.", Toast.LENGTH_SHORT).show();
                         divideZero = true;
@@ -233,7 +321,7 @@ public class CalculatorActivity extends AppCompatActivity  {
                     String resultText = finalResult + "";
                     textView.setText(resultText.indexOf(".") < 0 ? resultText : resultText.replaceAll("0*$", "").replaceAll("\\.$", ""));
                     memory = finalResult;
-                    result = "Ans";
+                    result = resultText.indexOf(".") < 0 ? resultText : resultText.replaceAll("0*$", "").replaceAll("\\.$", "");
                     secondOperation = true;
                     operationAvailable = true;
                 }
@@ -241,20 +329,42 @@ public class CalculatorActivity extends AppCompatActivity  {
                 signAvailable = true;
             } else {
                 Toast.makeText(CalculatorActivity.this, "2 Operands only.", Toast.LENGTH_SHORT).show();
-                result = "";
-                operationAvailable = false;
-                dotAvailable = true;
-                signAvailable = true;
-                secondOperation = false;
-                memory = 0.0;
+                reset();
             }
         }
+    }
+
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        Log.i(TAG, "onSaveInstanceState");
+        savedInstanceState.putString(KEY_TEXTVIEW, result);
+        savedInstanceState.putBoolean(KEY_OPERATION, operationAvailable);
+        savedInstanceState.putBoolean(KEY_DOT, dotAvailable);
+        savedInstanceState.putBoolean(KEY_SIGN, signAvailable);
+        savedInstanceState.putBoolean(KEY_SECOND_OPERATION, secondOperation);
+        savedInstanceState.putDouble(KEY_MEMORY, memory);
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculator);
+        textView = (TextView) findViewById(R.id.textView);
+        reset();
+        if (savedInstanceState != null) {
+            result = savedInstanceState.getString(KEY_TEXTVIEW, "");
+            operationAvailable = savedInstanceState.getBoolean(KEY_OPERATION, false);
+            dotAvailable = savedInstanceState.getBoolean(KEY_DOT, false);
+            signAvailable = savedInstanceState.getBoolean(KEY_SIGN, false);
+            secondOperation = savedInstanceState.getBoolean(KEY_SECOND_OPERATION, false);
+            memory = savedInstanceState.getDouble(KEY_MEMORY, 0.0);
+            textView.setText(result);
+        }
+    }
+
+    private void reset() {
         result = "";
         operationAvailable = false;
         dotAvailable = true;
